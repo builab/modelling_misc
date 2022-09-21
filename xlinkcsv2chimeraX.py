@@ -17,20 +17,34 @@ if __name__=='__main__':
 	args = parser.parse_args()
   
 	
-	outChimera = open(args.o, 'w')
-  outPseudo = open(str.replace(args.o, '.cxc', '.pb', 'w')
+	outChimeraX = open(args.o, 'w')	
+	outPseudoIntra = open(str.replace(args.o, '.cxc', '_intra.pb', 'w')
+	outPseudoInter = open(str.replace(args.o, '.cxc', '_inter.pb', 'w')
+
 	df = pd.read_csv(args.i, header=[0], index_col=False)
   
-  print(df)
+	print(df)
 	
-	outPseudo.write(" ; halfbond = true\n")
-  outPseudo.write(" ; color = magenta\n")
-  outPseudo.write(" ; radius = 0.1\n")
-  outPseudo.write(" ; dashes = 12\n")
+	outPseudoIntra.write(" ; halfbond = true\n")
+	outPseudoIntra.write(" ; color = magenta\n")
+	outPseudoIntra.write(" ; radius = 0.1\n")
+	outPseudoIntra.write(" ; dashes = 12\n")
+	
+	outPseudoInter.write(" ; halfbond = true\n")
+	outPseudoInter.write(" ; color = yellow\n")
+	outPseudoInter.write(" ; radius = 0.1\n")
+	outPseudoInter.write(" ; dashes = 12\n")
 
-	for i in range(len(df['X'])):
-		outPseudo.write("\{:s}:{:d}@nz\' \{:s}:{:d}@nz\n".format(df, x, y, z, radius))
-	/a:1@c3' /a:1@n3	
-	outPseudo.close()
+	# In the future, make inter & intra link separate file
+	for i in range(len(df['Chain1'])):
+		if df[i, 'Chain1'] == df[i, 'Chain2']: # IntraLink
+			outPseudoIntra.write("\{:s}:{:d}@nz\' \{:s}:{:d}@nz\n".format(df.loc[i, 'Chain1'], int(df.loc[i, 'PepPos1']) + int(df.loc[i, 'LinkPos1']) - 1, df.loc[i, 'Chain2'], int(df.loc[i, 'PepPos2']) + int(df.loc[i, 'LinkPos2']) - 1))
+		else: #InterLink
+			outPseudoIntra.write("\{:s}:{:d}@nz\' \{:s}:{:d}@nz\n".format(df.loc[i, 'Chain1'], int(df.loc[i, 'PepPos1']) + int(df.loc[i, 'LinkPos1']) - 1, df.loc[i, 'Chain2'], int(df.loc[i, 'PepPos2']) + int(df.loc[i, 'LinkPos2']) - 1))
+
 	
+	outPseudoIntra.close()
+	outPseudoInter.close()
 	
+	outChimeraX.write('crosslink abc def')
+	outChimeraX.close()

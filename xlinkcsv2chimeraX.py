@@ -39,14 +39,16 @@ if __name__=='__main__':
 
 	# In the future, make inter & intra link separate file
 	for i in range(len(df['Chain1'])):
+		outChimeraX.write("crosslinks \{:s}:{:d}\{:s}:{:d}")
 		if df.loc[i, 'Chain1'] == df.loc[i, 'Chain2']: # IntraLink
-			outPseudoIntra.write("\{:s}:{:d}@nz\' \{:s}:{:d}@nz\n".format(df.loc[i, 'Chain1'], int(df.loc[i, 'PepPos1']) + int(df.loc[i, 'LinkPos1']) - 1, df.loc[i, 'Chain2'], int(df.loc[i, 'PepPos2']) + int(df.loc[i, 'LinkPos2']) - 1))
+			outPseudoIntra.write("/{:s}:{:d}@nz\' /{:s}:{:d}@nz\n".format(df.loc[i, 'Chain1'], int(df.loc[i, 'PepPos1']) + int(df.loc[i, 'LinkPos1']) - 1, df.loc[i, 'Chain2'], int(df.loc[i, 'PepPos2']) + int(df.loc[i, 'LinkPos2']) - 1))
+			outChimeraX.write("show /{:s}:{:d}' /{:s}:{:d} radius 0.1 dash 12 color magenta\n".format(df.loc[i, 'Chain1'], int(df.loc[i, 'PepPos1']) + int(df.loc[i, 'LinkPos1']) - 1, df.loc[i, 'Chain2'], int(df.loc[i, 'PepPos2']) + int(df.loc[i, 'LinkPos2']) - 1)")
 		else: #InterLink
-			outPseudoInter.write("\{:s}:{:d}@nz\' \{:s}:{:d}@nz\n".format(df.loc[i, 'Chain1'], int(df.loc[i, 'PepPos1']) + int(df.loc[i, 'LinkPos1']) - 1, df.loc[i, 'Chain2'], int(df.loc[i, 'PepPos2']) + int(df.loc[i, 'LinkPos2']) - 1))
+			outPseudoInter.write("/{:s}:{:d}@nz\' /{:s}:{:d}@nz\n".format(df.loc[i, 'Chain1'], int(df.loc[i, 'PepPos1']) + int(df.loc[i, 'LinkPos1']) - 1, df.loc[i, 'Chain2'], int(df.loc[i, 'PepPos2']) + int(df.loc[i, 'LinkPos2']) - 1))
+			outChimeraX.write("show /{:s}:{:d}' /{:s}:{:d} radius 0.1 dash 12 color yellow\n".format(df.loc[i, 'Chain1'], int(df.loc[i, 'PepPos1']) + int(df.loc[i, 'LinkPos1']) - 1, df.loc[i, 'Chain2'], int(df.loc[i, 'PepPos2']) + int(df.loc[i, 'LinkPos2']) - 1)")
 
 	
 	outPseudoIntra.close()
 	outPseudoInter.close()
 	
-	outChimeraX.write('crosslink abc def\n')
 	outChimeraX.close()

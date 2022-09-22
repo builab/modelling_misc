@@ -1,1 +1,6 @@
-crosslink abc def
+show /I:823/J:805 target a
+crosslinks histogram /I:823/J:805 radius 0.1 dashes 12 color yellow
+show /J:812/J:805 target a
+crosslinks histogram /J:812/J:805 radius 0.1 dashes 12 color magenta
+show /J:418/J:410 target a
+crosslinks histogram /J:418/J:410 radius 0.1 dashes 12 color magenta

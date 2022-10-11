@@ -39,5 +39,6 @@ if __name__=='__main__':
 			outChimeraX.write("show /A:{:d} target a\ncolor /A:{:d} red target a\n".format(residue, residue))
 		else: #Link to beta-tubulin
 			outChimeraX.write("show /B:{:d} target a\ncolor /B:{:d} red target a\n".format(residue, residue))
-	
+
+	outChimeraX.write("style sphere\n")
 	outChimeraX.close()

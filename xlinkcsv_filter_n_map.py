@@ -28,16 +28,17 @@ if __name__=='__main__':
 	if args.uniprot2 == "all":
 		dfuniprot2 = df
 	else:
-		dfuniprot2 = df[df.Uniprot2 == args.uniprot2].copy()
+		dfuniprot2 = df[df.Uniprot2 == args.uniprot2].copy().reset_index()
 	
 	#print(dfuniprot2)
 	
 	for i in range(len(dfuniprot2)):
 		#outChimeraX.write("show /{:s}:{:d}/{:s}:{:d} target a\n".format(df.loc[i, 'Chain1'], int(df.loc[i, 'PepPos1']) + int(df.loc[i, 'LinkPos1']) - 1, df.loc[i, 'Chain2'], int(df.loc[i, 'PepPos2']) + int(df.loc[i, 'LinkPos2']) - 1))
-		residue = int(df.loc[i, 'PepPos1']) + int(df.loc[i, 'LinkPos1']) - 1
-		if df.loc[i, 'Protein1'] == 'TUBA': # Link to alpha-tubulin
+		
+		residue = int(dfuniprot2.loc[i, 'PepPos1']) + int(dfuniprot2.loc[i, 'LinkPos1']) - 1
+		if dfuniprot2.loc[i, 'Protein1'] == 'TUBA': # Link to alpha-tubulin
 			outChimeraX.write("show /A:{:d} target a\ncolor /A:{:d} red target a\n".format(residue, residue))
-		else: #Link to beta-tubulin
+		if dfuniprot2.loc[i, 'Protein1'] == 'TUBB': #Link to beta-tubulin
 			outChimeraX.write("show /B:{:d} target a\ncolor /B:{:d} red target a\n".format(residue, residue))
 
 	outChimeraX.write("style sphere\n")

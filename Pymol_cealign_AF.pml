@@ -2,7 +2,7 @@
 # @hb 2021
 cd /Users/kbui2/Desktop/48nm
 
-load "Density3/density3-coot-2.pdb", target
+load "/Users/kbui2/Downloads/helices_drawn2.pdb", target
 
 python
 
@@ -10,7 +10,7 @@ from pymol import cmd
 from glob import glob
 import os
 
-f = open('log_density3.txt', 'w')
+f = open('log_tip_CP.txt', 'w')
 for file in glob("AlphaFold/*/*model_1.pdb"):
 	name =  os.path.basename(file)
 	name= name.replace('.pdb', '')

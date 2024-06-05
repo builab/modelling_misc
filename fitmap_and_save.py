@@ -16,7 +16,7 @@ input_map = sys.argv[1]
 pdb_dir = sys.argv[2]
 output_dir = sys.argv[3]
 
-if len(sys.argv) > 3:
+if len(sys.argv) > 4:
 	suffix = sys.argv[4]
 else:
 	suffix = 'aln'
@@ -39,6 +39,6 @@ for pdb in os.listdir(pdb_dir):
 		pdb_basename = pdb_basename.replace('.pdb', '').replace('.cif', '')
 		print('Reading ' +  pdb + ' to #' + model.id_string)
 		run(session, f'fit #{model.id_string} inmap #{map.id_string}')
-		run(session, f'save {output_dir}/{pdb_basename}_{suffix}.pdb models #{model.id_string} relModel #{ref.id_string}')
+		run(session, f'save {output_dir}/{pdb_basename}_{suffix}.pdb models #{model.id_string} relModel #{map.id_string}')
 		
 

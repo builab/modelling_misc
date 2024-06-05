@@ -16,7 +16,7 @@ ref_model = sys.argv[1]
 pdb_dir = sys.argv[2]
 output_dir = sys.argv[3]
 
-if len(sys.argv) > 3:
+if len(sys.argv) > 4:
 	suffix = sys.argv[4]
 else:
 	suffix = 'aln'

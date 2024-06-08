@@ -2,7 +2,7 @@
 Scripts to help modelling and visualization
 
 
-##Pymol_cealign_AF.pml
+## Pymol_cealign_AF.pml
 Pymol script to use Cealign a pdb to a library of many AlphaFold models and calculating the RMSD. No sequence is used for this alignment.
 
 
@@ -14,7 +14,7 @@ Generating Xlink intra and inter .pb files to load in ChimeraX
 
 > Output: intra and inter .pb files and the ChimeraX loading file xlink.cxc
 
-  python xlinkcsv2chimeraX.py --i xlink_example.csv --o xlink.cxc
+  	python xlinkcsv2chimeraX.py --i xlink_example.csv --o xlink.cxc
   
   
 
@@ -28,7 +28,7 @@ Matchmaker many pdb models to a reference model and save the aligned files with 
 
 > Output: Output_dir contains aligned pdb files with suffix (default: '_aln.pdb')
 
-  runscript chimerax_mm_and_save.py reference.pdb pdb_dir output_dir suffix
+  	runscript chimerax_mm_and_save.py reference.pdb pdb_dir output_dir suffix
   
   
 ### chimerax_fitmap_and_save.py
@@ -39,7 +39,7 @@ The models need to be roughly aligned to the map, just small tweak needed.
 
 > Output: Output_dir contains aligned pdb files with suffix (default: '_aln.pdb')
 
-  runscript chimerax_fitmap_and_save.py map.mrc pdb_dir output_dir suffix
+  	runscript chimerax_fitmap_and_save.py map.mrc pdb_dir output_dir suffix
   
   
 ### chimerax_align_pdb_sequence.py
@@ -49,7 +49,7 @@ Using a CSV file listing the same folder and corresponding UniprotID, perform al
 
 > Output: Output_dir contains aligned pdb files with suffix (default: '_aln.pdb')
 
-  runscript chimerax_align_pdb_sequence.py pdb_uniprot.csv output_alignment_dir
+  	runscript chimerax_align_pdb_sequence.py pdb_uniprot.csv output_alignment_dir
   
   
   

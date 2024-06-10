@@ -43,15 +43,25 @@ The models need to be roughly aligned to the map, just small tweak needed.
   
   
 ### chimerax_align_pdb_sequence.py
-Using a CSV file listing the same folder and corresponding UniprotID, perform alignment of PDB sequence and UniprotID to make sure no mutation is made during modelling.
+Batch align pdbs sequence with corresponding Uniprot sequences to ensure no mutation is made during modelling based on the CSV file. The CSV file listing all the pdbs in the current folder and corresponding UniprotID.
 
-> Input: map, pdb_dir contains many pdb files
+> Input: pdbs, a csv file. Csv file with this format per line: 'pdb_file_name, uniprotID' 
 
-> Output: Output_dir contains aligned pdb files with suffix (default: '_aln.pdb')
+> Output: Output_dir contains the output alignment files using ClusterOmega with suffix '.aln'
 
   	runscript chimerax_align_pdb_sequence.py pdb_uniprot.csv output_alignment_dir
   
   
+### chimerax_change_chainid_csv.py
+Batch rename chainID of pdbs in the current folder to new chain ID based on a CSV file. The output is written with chainID at the end and in a new folder.
+
+> Input: pdbs, a csv file. Csv file with this format per line: 'pdb_file_name, chainID' 
+
+> Output: Output_dir contains pdb files with new chainID with suffix '_chainID.pdb'
+
+  	runscript chimerax_change_chainid_csv.py pdb_chainid.csv output_dir
+  
+
   
 
  

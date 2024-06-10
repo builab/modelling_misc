@@ -3,10 +3,10 @@
 # 2024/06/04
 
 """
-@Script: Script to rename all the pdbs with corresponding chainid defined in a csv file
+@Script: Script to change all the pdbs with corresponding chainid defined in a csv file
 @csv file format: pdb file name, chainID
 @Warning: only deal with pdb with 1 chain only
-@Usage: runscript chimerax_rename_chainid_csv.py example_pdb_chainid.csv output_dir
+@Usage: runscript chimerax_change_chainid_csv.py example_pdb_chainid.csv output_dir
 @Authors Huy Bui
 """
 

@@ -53,13 +53,23 @@ Batch align pdbs sequence with corresponding Uniprot sequences to ensure no muta
   
   
 ### chimerax_change_chainid_csv.py
-Batch rename chainID of pdbs in the current folder to new chain ID based on a CSV file. The output is written with chainID at the end and in a new folder.
+Batch rename chainID of pdbs in the input folder to new chain ID based on a CSV file. The output is written with chainID at the end and in a new folder.
 
 > Input: pdbs, a csv file. Csv file with this format per line: 'pdb_file_name, chainID' 
 
 > Output: Output_dir contains pdb files with new chainID with suffix '_chainID.pdb'
 
-  	runscript chimerax_change_chainid_csv.py pdb_chainid.csv output_dir
+  	runscript chimerax_change_chainid_csv.py pdb_chainid.csv input_dir output_dir
+
+  	
+### chimerax_change_chainid_regex_csv.py
+Batch rename chainID of pdbs in the input folder to new chain ID based on a CSV file. In this case, the csv 1st column contains the unique prefix of the pdb files, the csv 2nd column contains the chainid and the 3rd column contain a tag to add to the name. The output is written with {prefix}_{tag}_{chainID} at the end and in the output folder.
+
+> Input: pdbs, a csv file. Csv file with this format per line: 'pdb_prefix, chainID, tag' 
+
+> Output: Output_dir contains pdb files with new chainID with suffix '_chainID.pdb'
+
+  	runscript chimerax_change_chainid_regex_csv.py pdb_regex_chainid.csv input_dir output_dir
   
 
   

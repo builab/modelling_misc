@@ -63,7 +63,7 @@ Batch rename chainID of pdbs in the input folder to new chain ID based on a CSV 
 
   	
 ### chimerax_change_chainid_regex_csv.py
-Batch rename chainID of pdbs in the input folder to new chain ID based on a CSV file. In this case, the csv 1st column contains the unique prefix of the pdb files, the csv 2nd column contains the chainid and the 3rd column contain a tag to add to the name. The output is written with {prefix}_{tag}_{chainID} at the end and in the output folder.
+Batch rename chainID of pdbs in the input folder to new chain ID based on a CSV file. In this case, the csv 1st column contains the unique prefix of the pdb files, the csv 2nd column contains the chainid and the 3rd column contain a tag to add to the name. The output is written with [prefix]_[tag]_[chainID] at the end and in the output folder.
 
 > Input: pdbs, a csv file. Csv file with this format per line: 'pdb_prefix, chainID, tag' 
 

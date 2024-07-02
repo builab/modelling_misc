@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # # -*- coding: utf-8 -*-
 # 2024/06/04
+# TO DO: Check for duplicate
 
 """
 @Script: Script to change all the pdbs with corresponding chainid defined in a csv file
@@ -28,10 +29,9 @@ def find_files_with_pattern(directory, pattern):
     return matching_files
 
 
-print(len(sys.argv))
 if len(sys.argv) < 4:
     print("Usage: runscript chimerax_change_chainid_regex_csv.py example_regex_chainid.csv input_dir output_dir")
-	
+    
 csv_file = sys.argv[1]
 input_dir = sys.argv[2]
 output_dir = sys.argv[3]
@@ -45,6 +45,9 @@ from chimerax.core.commands import run
 with open(csv_file, 'r') as file:
     my_reader = csv.reader(file, delimiter=',')
     for row in my_reader: #
+        if row[0].startswith('#'):
+            continue
+            
         prefix = row[0]
         chainid = row[1]
         tag = row[2]

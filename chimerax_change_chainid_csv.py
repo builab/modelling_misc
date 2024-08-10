@@ -14,12 +14,18 @@ import sys,os,time,csv
 import os.path
 from datetime import datetime
 
+add_suffix = 1
+
 if len(sys.argv) < 4:
-    print("Usage: runscript chimerax_change_chainid_csv.py example_chainid.csv input_dir output_dir")
+	print("Usage: runscript chimerax_change_chainid_csv.py example_chainid.csv input_dir output_dir add_suffix")
 	
 csv_file = sys.argv[1]
 input_dir = sys.argv[2]
 output_dir = sys.argv[3]
+
+if len(sys.argv) == 5:
+	add_suffix = int(sys.argv[4])
+
 
 os.makedirs(output_dir, exist_ok=True)
 
@@ -28,10 +34,16 @@ from chimerax.core.commands import run
 
 with open(csv_file, 'r') as file:
 	my_reader = csv.reader(file, delimiter=',')
-	for row in my_reader: #
+	for row in my_reader:
+		if row[0].startswith('#'):
+			continue
+		print(row)
 		pdb_name = row[0]
 		chainid = row[1]
-		output_name = pdb_name.replace('.pdb',f'_{chainid}.pdb')
+		if add_suffix > 0:
+			output_name = pdb_name.replace('.pdb',f'_{chainid}.pdb')
+		else:
+			output_name = pdb_name
 		#run(session, f'close session')
 		pdb = run(session, f'open {input_dir}/{pdb_name}')[0]
 		run(session, f'changechains #{pdb.id_string} {chainid}')

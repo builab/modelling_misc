@@ -59,7 +59,12 @@ Batch rename chainID of pdbs in the input folder to new chain ID based on a CSV 
 
 > Output: Output_dir contains pdb files with new chainID with suffix '_chainID.pdb'
 
-  	runscript chimerax_change_chainid_csv.py pdb_chainid.csv input_dir output_dir
+  	runscript chimerax_change_chainid_csv.py pdb_chainid.csv input_dir output_dir 1
+
+Alternatively, use this option so the output file name is the same
+
+  	runscript chimerax_change_chainid_csv.py pdb_chainid.csv input_dir output_dir 0
+
 
   	
 ### chimerax_change_chainid_regex_csv.py
